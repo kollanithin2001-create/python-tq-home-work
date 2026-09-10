@@ -1,0 +1,13 @@
+word = input("Enter a word: ")
+
+reverse_word = ""
+
+for char in word:
+    reverse_word = char + reverse_word
+
+print("Reversed word:", reverse_word)
+
+if word.lower() == reverse_word.lower():
+    print("It is a palindrome")
+else:
+    print("It is not a palindrome")
