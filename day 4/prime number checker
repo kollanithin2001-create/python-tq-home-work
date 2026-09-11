@@ -1,0 +1,22 @@
+def is_prime(number):
+    if number < 2:
+        return False
+
+    divisor = 2
+
+    # We only need to check divisors up to the square root.
+    while divisor * divisor <= number:
+        if number % divisor == 0:
+            return False
+
+        divisor += 1
+
+    return True
+
+
+# Test the function with different values.
+for number in [-3, 0, 1, 2, 7, 9, 13, 25]:
+    if is_prime(number):
+        print(number, "is prime")
+    else:
+        print(number, "is not prime")

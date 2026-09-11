@@ -1,0 +1,29 @@
+def square(number):
+    return number * number
+
+
+def cube(number):
+    return number * number * number
+
+
+def factorial(number):
+    if number < 0:
+        raise ValueError("Factorial requires a non-negative number.")
+
+    result = 1
+    for i in range(1, number + 1):
+        result *= i
+
+    return result
+
+
+def simple_interest(principal, rate, time):
+    # Rate is the annual percentage; time is in years.
+    return (principal * rate * time) / 100
+
+
+# Call each function with sample inputs.
+print("Square of 5:", square(5))
+print("Cube of 3:", cube(3))
+print("Factorial of 5:", factorial(5))
+print("Simple interest:", simple_interest(1000, 5, 2))

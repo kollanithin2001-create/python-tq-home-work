@@ -1,0 +1,22 @@
+n = int(input("Enter the number of terms: "))
+
+if n <= 0:
+    print("Please enter a positive number.")
+else:
+    # Start with the first two Fibonacci numbers.
+    first = 0
+    second = 1
+
+    for i in range(n):
+        # Print the current term on the same line.
+        print(first, end=" ")
+
+        # Calculate the next term before updating the values.
+        next_number = first + second
+
+        # Move forward to the next pair of numbers.
+        first = second
+        second = next_number
+
+    # Move to a new line after printing the series.
+    print()
