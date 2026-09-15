@@ -1,0 +1,10 @@
+import numpy as np
+
+rng = np.random.default_rng()
+a = rng.integers(1, 11, size=5)  # 1 to 10
+b = rng.random(5)              # 0 to less than 1
+
+print("Integers:", a)
+print("Min and max:", a.min(), a.max())
+print("Floats:", b)
+print("Min and max:", b.min(), b.max())

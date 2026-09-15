@@ -1,0 +1,14 @@
+import numpy as np
+
+a = np.array([2, 4, 6, 8])
+
+print("Mean:", np.mean(a))
+print("Median:", np.median(a))
+print("Standard deviation:", np.std(a))
+
+# Manual calculations for this sorted array
+mean = sum(a) / len(a)
+median = (a[1] + a[2]) / 2
+std = (sum((x - mean) ** 2 for x in a) / len(a)) ** 0.5
+
+print("Manual:", mean, median, std)
