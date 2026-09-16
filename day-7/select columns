@@ -1,0 +1,15 @@
+import pandas as pd
+
+df = pd.DataFrame({
+    "Name": ["Ram", "Sita", "Ravi", "Anu"],
+    "Age": [22, 25, 23, 21],
+    "Marks": [80, 95, 70, 88]
+})
+
+print("Single column:\n", df["Name"])
+print("Multiple columns:\n", df[["Name", "Marks"]])
+
+print("Marks above 80:\n", df[df["Marks"] > 80])
+
+print("Age above 21 and marks at least 80:\n",
+      df[(df["Age"] > 21) & (df["Marks"] >= 80)])

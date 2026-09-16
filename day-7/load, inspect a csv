@@ -1,0 +1,17 @@
+import pandas as pd
+
+df = pd.DataFrame({
+    "Name": ["Ram", "Sita", "Ravi", "Anu", "Raj", "Priya"],
+    "Marks": [80, 95, 70, 88, 65, 90]
+})
+
+df.to_csv("students.csv", index=False)
+students = pd.read_csv("students.csv")
+
+print("First 5 rows:\n", students.head())
+print("Last 5 rows:\n", students.tail())
+
+print("Data information:")
+students.info()
+
+print("Numerical summary:\n", students.describe())

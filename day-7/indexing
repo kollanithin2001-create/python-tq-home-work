@@ -1,0 +1,9 @@
+import pandas as pd
+
+s = pd.Series([10, 20, 30, 40], index=["a", "b", "c", "d"])
+
+print("Series:\n", s)
+print("Value at label b:", s.loc["b"])
+print("First value:", s.iloc[0])
+print("Selected labels:\n", s.loc[["a", "c"]])
+print("Values greater than 20:\n", s[s > 20])

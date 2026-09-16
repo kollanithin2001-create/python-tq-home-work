@@ -1,0 +1,19 @@
+import pandas as pd
+
+# From a dictionary
+data = {
+    "Name": ["Ram", "Sita", "Ravi"],
+    "Age": [22, 25, 23]
+}
+df = pd.DataFrame(data)
+
+print("From dictionary:\n", df)
+print("First row:\n", df.iloc[0])
+print("Columns:", df.columns.tolist())
+print("Shape:", df.shape)
+
+# From a list of rows
+rows = [["Ram", 22], ["Sita", 25], ["Ravi", 23]]
+df2 = pd.DataFrame(rows, columns=["Name", "Age"])
+
+print("From list:\n", df2)
