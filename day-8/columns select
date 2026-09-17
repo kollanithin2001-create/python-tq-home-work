@@ -1,0 +1,35 @@
+import pandas as pd
+
+employee_data = {
+    "Name": ["John", "Sara", "Mike", "Priya"],
+    "Age": [28, 32, 25, 30],
+    "Department": ["IT", "HR", "Finance", "IT"],
+    "Salary": [70000, 65000, 60000, 75000]
+}
+
+employees = pd.DataFrame(employee_data)
+
+# Select a single column
+print("Name column:")
+print(employees["Name"])
+
+# Select multiple columns
+print("\nName and Salary columns:")
+print(employees[["Name", "Salary"]])
+
+# Filter rows using one condition
+print("\nEmployees earning more than $65,000:")
+print(employees[employees["Salary"] > 65000])
+
+# Filter rows using another condition
+print("\nEmployees in the IT department:")
+print(employees[employees["Department"] == "IT"])
+
+# Filter rows using multiple conditions
+print("\nIT employees earning more than $70,000:")
+result = employees[
+    (employees["Department"] == "IT") &
+    (employees["Salary"] > 70000)
+]
+
+print(result)

@@ -1,0 +1,42 @@
+import pandas as pd
+
+# DataFrame from a dictionary
+employee_data = {
+    "Name": ["John", "Sara", "Mike", "Priya"],
+    "Age": [28, 32, 25, 30],
+    "Department": ["IT", "HR", "Finance", "IT"],
+    "Salary": [70000, 65000, 60000, 75000]
+}
+
+employees = pd.DataFrame(employee_data)
+
+print("DataFrame created from a dictionary:")
+print(employees)
+
+# DataFrame from a list
+student_data = [
+    ["Arun", 21, "Computer Science"],
+    ["Meena", 22, "Business"],
+    ["Ravi", 20, "Engineering"]
+]
+
+students = pd.DataFrame(
+    student_data,
+    columns=["Name", "Age", "Course"]
+)
+
+print("\nDataFrame created from a list:")
+print(students)
+
+# Inspect rows and columns
+print("\nFirst two rows:")
+print(employees.head(2))
+
+print("\nLast two rows:")
+print(employees.tail(2))
+
+print("\nColumn names:")
+print(employees.columns)
+
+print("\nNumber of rows and columns:")
+print(employees.shape)
