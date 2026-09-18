@@ -1,0 +1,39 @@
+import pandas as pd
+
+data = {
+    "student_name": ["Arun", "Meena", "Ravi", "Priya"],
+    "student_age": [21, 22, 20, 21],
+    "student_marks": [85, 92, 78, 88]
+}
+
+df = pd.DataFrame(data)
+
+print("Original DataFrame:")
+print(df)
+
+# Rename columns
+df = df.rename(columns={
+    "student_name": "Name",
+    "student_age": "Age",
+    "student_marks": "Marks"
+})
+
+print("\nDataFrame after renaming columns:")
+print(df)
+
+# Sort by Marks in ascending order
+print("\nSorted by Marks in ascending order:")
+print(df.sort_values(by="Marks"))
+
+# Sort by Marks in descending order
+print("\nSorted by Marks in descending order:")
+print(df.sort_values(by="Marks", ascending=False))
+
+# Sort using multiple columns
+print("\nSorted by Age and Marks:")
+sorted_df = df.sort_values(
+    by=["Age", "Marks"],
+    ascending=[True, False]
+)
+
+print(sorted_df)

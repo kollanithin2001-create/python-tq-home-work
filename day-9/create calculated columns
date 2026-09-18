@@ -1,0 +1,27 @@
+import pandas as pd
+
+data = {
+    "Name": ["Arun", "Meena", "Ravi", "Priya"],
+    "Math": [85, 90, 78, 88],
+    "Science": [80, 95, 82, 91],
+    "English": [75, 88, 80, 86]
+}
+
+df = pd.DataFrame(data)
+
+# Calculate total marks
+df["Total"] = df["Math"] + df["Science"] + df["English"]
+
+# Maximum marks are 300
+df["Percentage"] = (df["Total"] / 300) * 100
+
+# Round percentage to two decimal places
+df["Percentage"] = df["Percentage"].round(2)
+
+# Create a Result column
+df["Result"] = df["Percentage"].apply(
+    lambda percentage: "Pass" if percentage >= 40 else "Fail"
+)
+
+print("Student results:")
+print(df)

@@ -1,0 +1,43 @@
+import pandas as pd
+import numpy as np
+
+data = {
+    "Name": ["Arun", "Meena", "Ravi", "Priya", "John"],
+    "Age": [21, np.nan, 20, 22, np.nan],
+    "Marks": [85, 90, np.nan, 88, 75],
+    "City": ["Delhi", "Mumbai", "Chennai", np.nan, "Pune"]
+}
+
+df = pd.DataFrame(data)
+
+print("Original DataFrame:")
+print(df)
+
+# Identify missing values
+print("\nMissing values:")
+print(df.isnull())
+
+# Count missing values in each column
+print("\nMissing-value count:")
+print(df.isnull().sum())
+
+# Fill missing Age with the average age
+df["Age"] = df["Age"].fillna(df["Age"].mean())
+
+# Fill missing Marks with the average marks
+df["Marks"] = df["Marks"].fillna(df["Marks"].mean())
+
+# Fill missing City with "Unknown"
+df["City"] = df["City"].fillna("Unknown")
+
+print("\nDataFrame after filling missing values:")
+print(df)
+
+# Original data again for dropna practice
+df_with_missing = pd.DataFrame(data)
+
+# Drop rows containing any missing values
+clean_df = df_with_missing.dropna()
+
+print("\nDataFrame after dropping missing values:")
+print(clean_df)

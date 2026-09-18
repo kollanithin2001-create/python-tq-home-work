@@ -1,0 +1,33 @@
+import pandas as pd
+
+data = {
+    "Name": ["Arun", "Meena", "Ravi", "Priya", "John", "Sara"],
+    "Department": ["IT", "HR", "IT", "Finance", "HR", "IT"],
+    "Salary": [70000, 60000, 75000, 65000, 62000, 80000]
+}
+
+df = pd.DataFrame(data)
+
+print("Original DataFrame:")
+print(df)
+
+# Count employees in each department
+department_count = df.groupby("Department")["Name"].count()
+
+print("\nEmployee count by department:")
+print(department_count)
+
+# Calculate average salary by department
+average_salary = df.groupby("Department")["Salary"].mean()
+
+print("\nAverage salary by department:")
+print(average_salary)
+
+# Calculate count and average together
+department_summary = df.groupby("Department").agg(
+    Employee_Count=("Name", "count"),
+    Average_Salary=("Salary", "mean")
+)
+
+print("\nDepartment summary:")
+print(department_summary)
