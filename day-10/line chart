@@ -1,0 +1,13 @@
+import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr", "May"]
+sales = [120, 150, 140, 180, 210]
+
+plt.figure(figsize=(8, 4))
+plt.plot(months, sales, marker="o", linewidth=2, color="blue")
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()

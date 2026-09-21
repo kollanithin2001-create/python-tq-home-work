@@ -1,0 +1,14 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# The seed makes the random results repeatable.
+rng = np.random.default_rng(42)
+scores = rng.normal(loc=75, scale=10, size=100)
+
+plt.figure(figsize=(8, 4))
+plt.hist(scores, bins=10, color="teal", edgecolor="black")
+plt.title("Distribution of Test Scores")
+plt.xlabel("Score")
+plt.ylabel("Number of Students")
+plt.tight_layout()
+plt.show()

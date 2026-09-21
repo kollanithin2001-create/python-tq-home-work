@@ -1,0 +1,20 @@
+import numpy as np
+import pandas as pd
+
+marks = np.array([72, 85, 90, 68, 95])
+
+print("Marks:", marks)
+print("Mean:", np.mean(marks))
+print("Median:", np.median(marks))
+print("Standard deviation:", np.std(marks))
+
+students = pd.DataFrame({
+    "Name": ["Arun", "Meena", "Ravi", "Priya", "Sara"],
+    "Marks": marks
+})
+
+print("\nStudent DataFrame:")
+print(students)
+
+print("\nStudents who scored at least 80:")
+print(students[students["Marks"] >= 80])
