@@ -1,0 +1,5 @@
+def greet_names(names):
+    for name in names:
+        print("Hello, " + name.upper())
+
+greet_names(["Naveen", "Alex", "Sam"])
