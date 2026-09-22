@@ -1,0 +1,18 @@
+import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+product_a = [100, 120, 115, 150]
+product_b = [90, 110, 130, 140]
+
+plt.figure(figsize=(9, 5))
+
+plt.plot(months, product_a, marker="o", label="Product A")
+plt.plot(months, product_b, marker="s", label="Product B")
+
+plt.title("Monthly Sales by Product")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()

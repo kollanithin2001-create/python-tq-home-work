@@ -1,0 +1,23 @@
+from pathlib import Path
+import matplotlib.pyplot as plt
+
+# Create a charts folder inside the current project folder
+chart_folder = Path("charts")
+chart_folder.mkdir(exist_ok=True)
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+sales = [100, 130, 120, 160]
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(months, sales, marker="o", label="Sales")
+ax.set_title("Monthly Sales")
+ax.set_xlabel("Month")
+ax.set_ylabel("Sales")
+ax.legend()
+ax.grid(True, alpha=0.3)
+
+fig.tight_layout()
+fig.savefig(chart_folder / "monthly_sales.png", dpi=300)
+plt.close(fig)
+
+print("Saved chart to:", chart_folder / "monthly_sales.png")
