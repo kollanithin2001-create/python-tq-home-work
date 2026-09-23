@@ -1,0 +1,25 @@
+import pandas as pd
+
+scores = pd.Series(
+    [85, 92, 78, 95, 88],
+    index=["Alice", "Bob", "Charlie", "David", "Emma"]
+)
+
+print("Complete Series:")
+print(scores)
+
+# Access a value using its label
+print("\nBob's score:")
+print(scores["Bob"])
+
+# Access a value using its position
+print("\nFirst score:")
+print(scores.iloc[0])
+
+# Select multiple values
+print("\nAlice and David's scores:")
+print(scores[["Alice", "David"]])
+
+# Filter values
+print("\nScores greater than 85:")
+print(scores[scores > 85])
