@@ -1,0 +1,33 @@
+import matplotlib.pyplot as plt
+
+months = ["Jan", "Feb", "Mar", "Apr"]
+sales = [100, 130, 120, 160]
+
+products = ["Laptop", "Phone", "Tablet"]
+units_sold = [35, 50, 20]
+
+scores = [55, 60, 65, 65, 70, 72, 75, 78, 80, 85, 90]
+
+# Line chart: shows change over time
+plt.figure()
+plt.plot(months, sales)
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.show()
+
+# Bar chart: compares categories
+plt.figure()
+plt.bar(products, units_sold)
+plt.title("Units Sold by Product")
+plt.xlabel("Product")
+plt.ylabel("Units Sold")
+plt.show()
+
+# Histogram: shows how numeric values are distributed
+plt.figure()
+plt.hist(scores, bins=5, edgecolor="black")
+plt.title("Distribution of Scores")
+plt.xlabel("Score")
+plt.ylabel("Frequency")
+plt.show()

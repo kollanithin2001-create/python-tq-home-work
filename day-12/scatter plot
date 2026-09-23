@@ -1,0 +1,30 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.DataFrame({
+    "Experience": [1, 2, 3, 4, 5, 6, 7, 8],
+    "Training_Hours": [10, 15, 12, 20, 22, 25, 30, 35],
+    "Performance": [60, 65, 68, 72, 78, 82, 88, 92],
+    "Salary": [45000, 50000, 54000, 60000, 66000, 72000, 80000, 90000]
+})
+
+correlation_matrix = df.corr(numeric_only=True)
+
+print("Correlation matrix:")
+print(correlation_matrix.round(2))
+
+plt.figure(figsize=(8, 6))
+
+sns.heatmap(
+    correlation_matrix,
+    annot=True,
+    cmap="coolwarm",
+    fmt=".2f",
+    vmin=-1,
+    vmax=1
+)
+
+plt.title("Correlation Matrix")
+plt.tight_layout()
+plt.show()
