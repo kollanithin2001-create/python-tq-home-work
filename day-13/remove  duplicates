@@ -1,0 +1,37 @@
+import pandas as pd
+
+data = {
+    "Employee Name": ["Arun", "Meena", "Arun", "Ravi", "Priya"],
+    "Department": ["IT", " hr ", "IT", "FINANCE", "Hr"],
+    "Salary": ["60000", "55000", "60000", "70000", "65000"]
+}
+
+df = pd.DataFrame(data)
+
+print("Original data:")
+print(df)
+
+# Identify duplicate rows
+print("\nDuplicate rows:")
+print(df[df.duplicated()])
+
+# Remove duplicate rows
+df = df.drop_duplicates().copy()
+
+# Standardize column names
+df.columns = (
+    df.columns
+    .str.strip()
+    .str.lower()
+    .str.replace(" ", "_")
+)
+
+# Standardize employee names and departments
+df["employee_name"] = df["employee_name"].str.strip().str.title()
+df["department"] = df["department"].str.strip().str.title()
+
+# Convert salary into numeric format
+df["salary"] = pd.to_numeric(df["salary"], errors="coerce")
+
+print("\nCleaned data:")
+print(df)

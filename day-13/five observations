@@ -1,0 +1,97 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+data = {
+    "Month": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"] * 3,
+    "Region": ["East"] * 6 + ["West"] * 6 + ["South"] * 6,
+    "Sales": [
+        100, 120, 135, 145, 160, 180,
+        90, 105, 110, 125, 140, 150,
+        80, 95, 100, 115, 125, 135
+    ],
+    "Profit": [
+        15, 18, 22, 24, 28, 32,
+        10, 14, 15, 18, 21, 24,
+        8, 11, 13, 15, 18, 20
+    ]
+}
+
+df = pd.DataFrame(data)
+
+month_order = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+df["Month"] = pd.Categorical(
+    df["Month"],
+    categories=month_order,
+    ordered=True
+)
+
+# Chart 1: Monthly sales by region
+plt.figure(figsize=(9, 5))
+sns.lineplot(
+    data=df,
+    x="Month",
+    y="Sales",
+    hue="Region",
+    marker="o"
+)
+plt.title("Monthly Sales by Region")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+# Chart 2: Average sales by region
+plt.figure(figsize=(7, 4))
+sns.barplot(
+    data=df,
+    x="Region",
+    y="Sales",
+    errorbar=None,
+    hue="Region",
+    legend=False
+)
+plt.title("Average Sales by Region")
+plt.xlabel("Region")
+plt.ylabel("Average Sales")
+plt.tight_layout()
+plt.show()
+
+# Chart 3: Sales and profit relationship
+plt.figure(figsize=(7, 4))
+sns.scatterplot(
+    data=df,
+    x="Sales",
+    y="Profit",
+    hue="Region",
+    s=100
+)
+plt.title("Sales vs Profit")
+plt.xlabel("Sales")
+plt.ylabel("Profit")
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+# Calculate supporting statistics
+region_summary = df.groupby(
+    "Region",
+    observed=True
+)[["Sales", "Profit"]].mean().round(2)
+
+monthly_sales = df.groupby(
+    "Month",
+    observed=True
+)["Sales"].sum()
+
+correlation = df["Sales"].corr(df["Profit"])
+
+print("Average sales and profit by region:")
+print(region_summary)
+
+print("\nTotal monthly sales:")
+print(monthly_sales)
+
+print("\nSales and profit correlation:")
+print(round(correlation, 2))

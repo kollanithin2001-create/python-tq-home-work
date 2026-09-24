@@ -1,0 +1,43 @@
+import pandas as pd
+
+data = {
+    "Employee": ["Arun", "Meena", "Ravi", "Priya"],
+    "Salary": ["$60,000", "$55,000", "invalid", "$70,000"],
+    "Joining_Date": ["01-15-2024", "02-20-2023", "03-10-2022", "04-05-2021"],
+    "Department": ["IT", "HR", "IT", "Finance"]
+}
+
+df = pd.DataFrame(data)
+
+print("Original data types:")
+print(df.dtypes)
+
+# Remove dollar signs and commas before numeric conversion
+df["Salary"] = (
+    df["Salary"]
+    .str.replace("$", "", regex=False)
+    .str.replace(",", "", regex=False)
+)
+
+# Convert strings to numeric values
+# Invalid values become NaN
+df["Salary"] = pd.to_numeric(df["Salary"], errors="coerce")
+
+# Convert strings to dates
+df["Joining_Date"] = pd.to_datetime(
+    df["Joining_Date"],
+    format="%m-%d-%Y",
+    errors="coerce"
+)
+
+# Convert department into a category
+df["Department"] = df["Department"].astype("category")
+
+print("\nConverted DataFrame:")
+print(df)
+
+print("\nUpdated data types:")
+print(df.dtypes)
+
+print("\nDepartment categories:")
+print(df["Department"].cat.categories)
