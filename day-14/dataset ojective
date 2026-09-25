@@ -1,0 +1,95 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from pathlib import Path
+
+# Create plots folder
+plots_folder = Path("plots")
+plots_folder.mkdir(exist_ok=True)
+
+# Load dataset
+df = pd.read_csv("sample_sales.csv")
+
+# Dataset objective
+print("OBJECTIVE:")
+print("Analyze sales performance by month, region, and category.")
+
+# Cleaning steps
+df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
+
+df["region"] = df["region"].str.strip().str.title()
+df["category"] = df["category"].str.strip().str.title()
+
+df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
+df["sales"] = pd.to_numeric(df["sales"], errors="coerce")
+df["profit"] = pd.to_numeric(df["profit"], errors="coerce")
+
+df = df.drop_duplicates()
+
+df["sales"] = df["sales"].fillna(df["sales"].median())
+df["profit"] = df["profit"].fillna(df["profit"].median())
+
+df = df.dropna(subset=["order_date", "region", "category"])
+df["month"] = df["order_date"].dt.to_period("M").astype(str)
+
+print("\nCLEANING COMPLETED:")
+print("Duplicates removed, missing values filled, and formats standardized.")
+
+# Chart 1: Monthly sales
+monthly_sales = df.groupby("month")["sales"].sum()
+
+plt.figure(figsize=(8, 4))
+monthly_sales.plot(marker="o")
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.grid(alpha=0.3)
+plt.tight_layout()
+plt.savefig(plots_folder / "monthly_sales.png")
+plt.show()
+
+# Chart 2: Sales by region
+plt.figure(figsize=(7, 4))
+sns.barplot(data=df, x="region", y="sales", estimator="sum", errorbar=None)
+plt.title("Sales by Region")
+plt.xlabel("Region")
+plt.ylabel("Total Sales")
+plt.tight_layout()
+plt.savefig(plots_folder / "sales_by_region.png")
+plt.show()
+
+# Chart 3: Sales by category
+plt.figure(figsize=(7, 4))
+sns.barplot(data=df, x="category", y="sales", estimator="sum", errorbar=None)
+plt.title("Sales by Category")
+plt.xlabel("Category")
+plt.ylabel("Total Sales")
+plt.tight_layout()
+plt.savefig(plots_folder / "sales_by_category.png")
+plt.show()
+
+# Chart 4: Sales versus profit
+plt.figure(figsize=(7, 4))
+sns.scatterplot(data=df, x="sales", y="profit", hue="region")
+plt.title("Sales vs Profit")
+plt.tight_layout()
+plt.savefig(plots_folder / "sales_vs_profit.png")
+plt.show()
+
+# Key findings
+total_sales = df["sales"].sum()
+total_profit = df["profit"].sum()
+profit_margin = (total_profit / total_sales) * 100
+best_region = df.groupby("region")["sales"].sum().idxmax()
+best_category = df.groupby("category")["sales"].sum().idxmax()
+best_month = monthly_sales.idxmax()
+correlation = df["sales"].corr(df["profit"])
+
+print("\nKEY FINDINGS:")
+print(f"Total sales: ${total_sales:,.2f}")
+print(f"Total profit: ${total_profit:,.2f}")
+print(f"Profit margin: {profit_margin:.2f}%")
+print(f"Best-performing region: {best_region}")
+print(f"Highest-selling category: {best_category}")
+print(f"Best sales month: {best_month}")
+print(f"Sales-profit correlation: {correlation:.2f}")

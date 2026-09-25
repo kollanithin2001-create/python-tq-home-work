@@ -1,0 +1,43 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+df = pd.read_csv("data/sample_sales.csv")
+
+print(df.head())
+print(df.info())
+print(df.describe())
+print(df.isnull().sum())
+
+# Remove duplicates
+df = df.drop_duplicates()
+
+# Fill missing numerical values
+df["Sales"] = df["Sales"].fillna(df["Sales"].median())
+df["Profit"] = df["Profit"].fillna(df["Profit"].median())
+
+# Convert date column
+df["Order Date"] = pd.to_datetime(df["Order Date"])
+
+# Monthly sales chart
+df.groupby(df["Order Date"].dt.month)["Sales"].sum().plot(
+    kind="line", marker="o"
+)
+plt.title("Monthly Sales")
+plt.xlabel("Month")
+plt.ylabel("Sales")
+plt.grid()
+plt.savefig("plots/monthly_sales.png")
+plt.show()
+
+# Sales by region
+sns.barplot(data=df, x="Region", y="Sales", estimator="sum")
+plt.title("Sales by Region")
+plt.savefig("plots/sales_by_region.png")
+plt.show()
+
+# Sales and profit relationship
+sns.scatterplot(data=df, x="Sales", y="Profit", hue="Region")
+plt.title("Sales vs Profit")
+plt.savefig("plots/sales_vs_profit.png")
+plt.show()
