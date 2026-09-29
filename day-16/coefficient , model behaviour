@@ -1,0 +1,12 @@
+print(f"Coefficient: {model.coef_[0]:.2f}")
+print(f"Intercept: {model.intercept_:.2f}")
+
+print(
+    f"Each additional study hour is associated with about "
+    f"{model.coef_[0]:.2f} more predicted score points."
+)
+print("Predictions are the scores the model estimates for the test data.")
+print(
+    f"The model follows a straight-line relationship. "
+    f"Its average absolute prediction error is {mae:.2f} points."
+)

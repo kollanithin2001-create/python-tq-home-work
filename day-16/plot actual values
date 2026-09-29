@@ -1,0 +1,11 @@
+import matplotlib.pyplot as plt
+
+plt.scatter(y_test, y_pred, color="blue")
+limits = [min(y_test.min(), y_pred.min()), max(y_test.max(), y_pred.max())]
+plt.plot(limits, limits, "r--", label="Perfect prediction")
+
+plt.xlabel("Actual score")
+plt.ylabel("Predicted score")
+plt.title("Actual vs. Predicted Scores")
+plt.legend()
+plt.show()
