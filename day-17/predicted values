@@ -1,0 +1,8 @@
+import matplotlib.pyplot as plt
+
+plt.scatter(y, predicted)
+plt.plot([min(y), max(y)], [min(y), max(y)], "r--")
+plt.xlabel("Actual marks")
+plt.ylabel("Predicted marks")
+plt.title("Actual vs Predicted")
+plt.show()
